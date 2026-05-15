@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pepsi - That's What I Like</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="site-header" id="site-header">
+    <nav class="nav-container">
+      <div class="nav-logo">
+        <a href="#" aria-label="Pepsi Home">
+          <svg class="pepsi-globe" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <clipPath id="globe-clip">
+              <circle cx="40" cy="40" r="38"/>
+            </clipPath>
+            <circle cx="40" cy="40" r="38" fill="#004B93" stroke="#fff" stroke-width="2"/>
+            <path d="M2 40 Q20 25 40 40 Q60 55 78 40 L78 2 Q60 2 40 2 Q20 2 2 2 Z" fill="#E3001B" clip-path="url(#globe-clip)"/>
+            <path d="M2 40 Q20 28 40 40 Q60 52 78 40" fill="none" stroke="#fff" stroke-width="5"/>
+            <circle cx="40" cy="40" r="38" fill="none" stroke="#fff" stroke-width="2"/>
+          </svg>
+          <span class="nav-logo-text">PEPSI</span>
+        </a>
+      </div>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#products">Products</a></li>
+        <li><a href="#flavors">Flavors</a></li>
+        <li><a href="#culture">Culture</a></li>
+        <li><a href="#history">History</a></li>
+        <li><a href="#sustainability">Sustainability</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="nav-search-btn" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </button>
+        <a href="#" class="nav-cta">Shop Now</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <p class="hero-eyebrow">New Look. Same Bold Taste.</p>
+        <h1 class="hero-headline">That's What<br/>I Like</h1>
+        <p class="hero-sub">Born bold. Refreshingly different. Made for those who dare to stand out.</p>
+        <div class="hero-actions">
+          <a href="#products" class="btn btn-primary">Explore Products</a>
+          <a href="#culture" class="btn btn-ghost">Our World</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-can-wrapper">
+          <div class="hero-can">
+            <div class="can-top"></div>
+            <div class="can-body">
+              <div class="can-label">
+                <div class="can-globe">
+                  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <clipPath id="can-clip">
+                      <circle cx="50" cy="50" r="46"/>
+                    </clipPath>
+                    <circle cx="50" cy="50" r="46" fill="#004B93"/>
+                    <path d="M4 50 Q25 32 50 50 Q75 68 96 50 L96 4 Q75 4 50 4 Q25 4 4 4 Z" fill="#E3001B" clip-path="url(#can-clip)"/>
+                    <path d="M4 50 Q25 35 50 50 Q75 65 96 50" fill="none" stroke="#fff" stroke-width="6"/>
+                    <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+                  </svg>
+                </div>
+                <span class="can-brand">PEPSI</span>
+              </div>
+            </div>
+            <div class="can-bottom"></div>
+          </div>
+          <div class="hero-can-shadow"></div>
+        </div>
+      </div>
+      <div class="hero-scroll-hint">
+        <span>Scroll</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </section>
+
+    <!-- Ticker / Marquee -->
+    <div class="ticker-wrap">
+      <div class="ticker-track">
+        <span>PEPSI</span><span class="dot">·</span>
+        <span>THAT'S WHAT I LIKE</span><span class="dot">·</span>
+        <span>PEPSI ZERO SUGAR</span><span class="dot">·</span>
+        <span>PEPSI WILD CHERRY</span><span class="dot">·</span>
+        <span>PEPSI MANGO</span><span class="dot">·</span>
+        <span>PEPSI LIME</span><span class="dot">·</span>
+        <span>PEPSI</span><span class="dot">·</span>
+        <span>THAT'S WHAT I LIKE</span><span class="dot">·</span>
+        <span>PEPSI ZERO SUGAR</span><span class="dot">·</span>
+        <span>PEPSI WILD CHERRY</span><span class="dot">·</span>
+        <span>PEPSI MANGO</span><span class="dot">·</span>
+        <span>PEPSI LIME</span><span class="dot">·</span>
+      </div>
+    </div>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-eyebrow">Our Lineup</span>
+          <h2 class="section-title">Find Your Pepsi</h2>
+          <p class="section-desc">From the original bold cola to exciting new flavors — there's a Pepsi for every moment.</p>
+        </div>
+        <div class="products-grid">
+
+          <div class="product-card product-card--original">
+            <div class="product-card__badge">Original</div>
+            <div class="product-card__visual">
+              <div class="mini-can" style="--can-top:#E3001B;--can-body:#004B93;">
+                <div class="mini-can__top"></div>
+                <div class="mini-can__body"></div>
+                <div class="mini-can__bottom"></div>
+              </div>
+            </div>
+            <div class="product-card__info">
+              <h3>Pepsi</h3>
+              <p>The original bold cola. Refreshingly crisp with a taste that started it all.</p>
+              <a href="#" class="product-link">Learn More →</a>
+            </div>
+          </div>
+
+          <div class="product-card product-card--zero">
+            <div class="product-card__badge">Zero Sugar</div>
+            <div class="product-card__visual">
+              <div class="mini-can" style="--can-top:#000;--can-body:#1a1a1a;">
+                <div class="mini-can__top"></div>
+                <div class="mini-can__body" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #0a0a0a 100%);"></div>
+                <div class="mini-can__bottom"></div>
+              </div>
+            </div>
+            <div class="product-card__info">
+              <h3>Pepsi Zero Sugar</h3>
+              <p>Maximum Pepsi taste. Zero sugar. All the bold, none of the compromise.</p>
+              <a href="#" class="product-link">Learn More →</a>
+            </div>
+          </div>
+
+          <div class="product-card product-card--cherry">
+            <div class="product-card__badge">Wild Cherry</div>
+            <div class="product-card__visual">
+              <div class="mini-can" style="--can-top:#8B0000;--can-body:#C0392B;">
+                <div class="mini-can__top"></div>
+                <div class="mini-can__body" style="background: linear-gradient(135deg, #C0392B 0%, #922B21 50%, #7B241C 100%);"></div>
+                <div class="mini-can__bottom"></div>
+              </div>
+            </div>
+            <div class="product-card__info">
+              <h3>Pepsi Wild Cherry</h3>
+              <p>Classic Pepsi taste with a burst of real cherry flavor in every sip.</p>
+              <a href="#" class="product-link">Learn More →</a>
+            </div>
+          </div>
+
+          <div class="product-card product-card--mango">
+            <div class="product-card__badge">Mango</div>
+            <div class="product-card__visual">
+              <div class="mini-can" style="--can-top:#E67E00;--can-body:#F39C12;">
+                <div class="mini-can__top"></div>
+                <div class="mini-can__body" style="background: linear-gradient(135deg, #F39C12 0%, #E67E22 50%, #D35400 100%);"></div>
+                <div class="mini-can__bottom"></div>
+              </div>
+            </div>
+            <div class="product-card__info">
+              <h3>Pepsi Mango</h3>
+              <p>Tropical mango meets the bold cola taste you love. Summer in every can.</p>
+              <a href="#" class="product-link">Learn More →</a>
+            </div>
+          </div>
+
+          <div class="product-card product-card--lime">
+            <div class="product-card__badge">Lime</div>
+            <div class="product-card__visual">
+              <div class="mini-can" style="--can-top:#1a6b1a;--can-body:#27AE60;">
+                <div class="mini-can__top"></div>
+                <div class="mini-can__body" style="background: linear-gradient(135deg, #27AE60 0%, #1E8449 50%, #196F3D 100%);"></div>
+                <div class="mini-can__bottom"></div>
+              </div>
+            </div>
+            <div class="product-card__info">
+              <h3>Pepsi Lime</h3>
+              <p>Zesty lime twist on a timeless classic. Sharp, refreshing, undeniably Pepsi.</p>
+              <a href="#" class="product-link">Learn More →</a>
+            </div>
+          </div>
+
+          <div class="product-card product-card--diet">
+            <div class="product-card__badge">Diet</div>
+            <div class="product-card__visual">
+              <div class="mini-can" style="--can-top:#555;--can-body:#888;">
+                <div class="mini-can__top"></div>
+                <div class="mini-can__body" style="background: linear-gradient(135deg, #aaa 0%, #888 50%, #666 100%);"></div>
+                <div class="mini-can__bottom"></div>
+              </div>
+            </div>
+            <div class="product-card__info">
+              <h3>Diet Pepsi</h3>
+              <p>Light, crisp, and delicious. The lighter side of Pepsi, without compromise.</p>
+              <a href="#" class="product-link">Learn More →</a>
+            </div>
+          </div>
+
+        </div>
+        <div class="products-cta">
+          <a href="#" class="btn btn-primary">View All Products</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Flavors Spotlight -->
+    <section class="flavors-section" id="flavors">
+      <div class="flavors-inner">
+        <div class="flavors-text">
+          <span class="section-eyebrow light">New Arrivals</span>
+          <h2>Bold New Flavors</h2>
+          <p>We never stop innovating. Every season brings something new to discover — limited releases, bold experiments, and fan favorites that earn a permanent place in the lineup.</p>
+          <a href="#" class="btn btn-outline-white">Explore Flavors</a>
+        </div>
+        <div class="flavors-visual">
+          <div class="flavor-bubbles">
+            <div class="flavor-bubble" style="--c1:#E67E22;--c2:#D35400;top:10%;left:15%;">
+              <span>Mango</span>
+            </div>
+            <div class="flavor-bubble" style="--c1:#8E44AD;--c2:#6C3483;top:5%;left:55%;">
+              <span>Grape</span>
+            </div>
+            <div class="flavor-bubble" style="--c1:#27AE60;--c2:#1A5C38;top:50%;left:5%;">
+              <span>Lime</span>
+            </div>
+            <div class="flavor-bubble" style="--c1:#C0392B;--c2:#7B241C;top:55%;left:50%;">
+              <span>Cherry</span>
+            </div>
+            <div class="flavor-bubble" style="--c1:#2471A3;--c2:#1A5276;top:30%;left:70%;">
+              <span>Original</span>
+            </div>
+            <div class="flavor-bubble" style="--c1:#1a1a1a;--c2:#000;top:75%;left:30%;">
+              <span>Zero</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Culture Section -->
+    <section class="culture-section" id="culture">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-eyebrow">Culture</span>
+          <h2 class="section-title">More Than a Drink</h2>
+          <p class="section-desc">Pepsi has been part of the cultural conversation for generations — from music and sports to art and fashion.</p>
+        </div>
+        <div class="culture-grid">
+          <div class="culture-card culture-card--music">
+            <div class="culture-card__bg"></div>
+            <div class="culture-card__content">
+              <div class="culture-card__icon">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+              </div>
+              <h3>Music</h3>
+              <p>From the Super Bowl Halftime Show to chart-topping collabs — Pepsi and music are inseparable.</p>
+              <a href="#">Discover →</a>
+            </div>
+          </div>
+          <div class="culture-card culture-card--sports">
+            <div class="culture-card__bg"></div>
+            <div class="culture-card__content">
+              <div class="culture-card__icon">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/><path d="M6.5 17.5l7.51-3.49L17.5 6.5 9.99 9.99z"/></svg>
+              </div>
+              <h3>Sports</h3>
+              <p>Fueling champions on and off the field. Pepsi is the official drink of peak performance.</p>
+              <a href="#">Discover →</a>
+            </div>
+          </div>
+          <div class="culture-card culture-card--gaming">
+            <div class="culture-card__bg"></div>
+            <div class="culture-card__content">
+              <div class="culture-card__icon">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5S14.67 12 15.5 12s1.5.67 1.5 1.5S16.33 15 15.5 15zm3-3c-.83 0-1.5-.67-1.5-1.5S17.67 10 18.5 10s1.5.67 1.5 1.5S19.33 12 18.5 12z"/></svg>
+              </div>
+              <h3>Gaming</h3>
+              <p>Level up with Pepsi. We're where gamers and creators push the boundaries of what's possible.</p>
+              <a href="#">Discover →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- History Timeline -->
+    <section class="history-section" id="history">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-eyebrow">Our Story</span>
+          <h2 class="section-title">125+ Years Bold</h2>
+          <p class="section-desc">From a small pharmacy in North Carolina to a global icon — this is the Pepsi story.</p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">1893</div>
+            <div class="timeline-content">
+              <h3>Born Bold</h3>
+              <p>Caleb Bradham creates "Brad's Drink" in his pharmacy in New Bern, North Carolina.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">1898</div>
+            <div class="timeline-content">
+              <h3>Pepsi-Cola</h3>
+              <p>Bradham renames the drink Pepsi-Cola, inspired by the digestive enzyme pepsin and kola nuts.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">1965</div>
+            <div class="timeline-content">
+              <h3>PepsiCo Founded</h3>
+              <p>Pepsi-Cola merges with Frito-Lay to form PepsiCo, Inc., one of the world's largest food and beverage companies.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">1984</div>
+            <div class="timeline-content">
+              <h3>The Choice of a New Generation</h3>
+              <p>Michael Jackson joins Pepsi in a landmark partnership, igniting the "new generation" campaign era.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2023</div>
+            <div class="timeline-content">
+              <h3>Bold New Look</h3>
+              <p>Pepsi unveils a refreshed logo and visual identity for the first time in 14 years — bolder, more modern, unmistakably Pepsi.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sustainability Section -->
+    <section class="sustainability-section" id="sustainability">
+      <div class="sustainability-inner">
+        <div class="sus-content">
+          <span class="section-eyebrow light">PepsiCo Positive</span>
+          <h2>A Better Tomorrow Starts Today</h2>
+          <p>We're committed to building a more sustainable future — from the way we source ingredients to how we package and deliver our products. pep+ (PepsiCo Positive) is our strategic transformation to become a better company for the world.</p>
+          <div class="sus-stats">
+            <div class="sus-stat">
+              <strong>2040</strong>
+              <span>Net-zero emissions target</span>
+            </div>
+            <div class="sus-stat">
+              <strong>100%</strong>
+              <span>Recyclable, compostable, or biodegradable packaging goal</span>
+            </div>
+            <div class="sus-stat">
+              <strong>50%</strong>
+              <span>Reduction in virgin plastic per serving</span>
+            </div>
+          </div>
+          <a href="#" class="btn btn-outline-white">Our Commitments</a>
+        </div>
+        <div class="sus-visual">
+          <div class="earth-graphic">
+            <div class="earth-ring earth-ring--1"></div>
+            <div class="earth-ring earth-ring--2"></div>
+            <div class="earth-ring earth-ring--3"></div>
+            <div class="earth-core">
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <circle cx="50" cy="50" r="45" fill="#1B6CA8" opacity="0.9"/>
+                <ellipse cx="38" cy="42" rx="14" ry="18" fill="#2ECC71" opacity="0.85"/>
+                <ellipse cx="62" cy="55" rx="10" ry="14" fill="#2ECC71" opacity="0.85"/>
+                <ellipse cx="50" cy="28" rx="8" ry="6" fill="#2ECC71" opacity="0.7"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+      <div class="section-container">
+        <div class="newsletter-inner">
+          <div class="newsletter-globe">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <clipPath id="nl-clip"><circle cx="40" cy="40" r="38"/></clipPath>
+              <circle cx="40" cy="40" r="38" fill="#004B93"/>
+              <path d="M2 40 Q20 25 40 40 Q60 55 78 40 L78 2 Q60 2 40 2 Q20 2 2 2 Z" fill="#E3001B" clip-path="url(#nl-clip)"/>
+              <path d="M2 40 Q20 28 40 40 Q60 52 78 40" fill="none" stroke="#fff" stroke-width="5"/>
+              <circle cx="40" cy="40" r="38" fill="none" stroke="#fff" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="newsletter-text">
+            <h2>Stay in the Loop</h2>
+            <p>New flavors, exclusive drops, and the latest from Pepsi — straight to your inbox.</p>
+          </div>
+          <form class="newsletter-form" id="newsletter-form">
+            <input type="email" placeholder="Enter your email" required aria-label="Email address"/>
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <clipPath id="footer-clip"><circle cx="40" cy="40" r="38"/></clipPath>
+          <circle cx="40" cy="40" r="38" fill="#004B93"/>
+          <path d="M2 40 Q20 25 40 40 Q60 55 78 40 L78 2 Q60 2 40 2 Q20 2 2 2 Z" fill="#E3001B" clip-path="url(#footer-clip)"/>
+          <path d="M2 40 Q20 28 40 40 Q60 52 78 40" fill="none" stroke="#fff" stroke-width="5"/>
+          <circle cx="40" cy="40" r="38" fill="none" stroke="#fff" stroke-width="2"/>
+        </svg>
+        <span>PEPSI</span>
+      </div>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook" class="social-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="#" aria-label="Instagram" class="social-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" aria-label="Twitter / X" class="social-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" aria-label="YouTube" class="social-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#00234B"/></svg>
+        </a>
+        <a href="#" aria-label="TikTok" class="social-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.95a8.27 8.27 0 0 0 4.83 1.54V7a4.85 4.85 0 0 1-1.06-.31z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="#">Pepsi Original</a></li>
+          <li><a href="#">Pepsi Zero Sugar</a></li>
+          <li><a href="#">Diet Pepsi</a></li>
+          <li><a href="#">Pepsi Wild Cherry</a></li>
+          <li><a href="#">Pepsi Mango</a></li>
+          <li><a href="#">Pepsi Lime</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About PepsiCo</a></li>
+          <li><a href="#">Our History</a></li>
+          <li><a href="#">Leadership</a></li>
+          <li><a href="#">Newsroom</a></li>
+          <li><a href="#">Investors</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Culture</h4>
+        <ul>
+          <li><a href="#">Music</a></li>
+          <li><a href="#">Sports</a></li>
+          <li><a href="#">Gaming</a></li>
+          <li><a href="#">Entertainment</a></li>
+          <li><a href="#">Partnerships</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Sustainability</h4>
+        <ul>
+          <li><a href="#">pep+ Strategy</a></li>
+          <li><a href="#">Environment</a></li>
+          <li><a href="#">People</a></li>
+          <li><a href="#">Agriculture</a></li>
+          <li><a href="#">Reports</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Store Locator</a></li>
+          <li><a href="#">Accessibility</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 PepsiCo, Inc. All Rights Reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Cookie Settings</a>
+        <a href="#">Do Not Sell My Info</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
