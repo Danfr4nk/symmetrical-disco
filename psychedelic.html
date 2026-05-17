@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Psychedelic</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #000; overflow: hidden; cursor: crosshair; }
+    canvas { display: block; }
+    #hint {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: rgba(255, 255, 255, 0.22);
+      text-transform: uppercase;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="hint">move mouse &middot; click to shift</div>
+<script>
+'use strict';
+
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+
+let W, H, CX, CY, R;
+let t = 0;
+let mx = 0, my = 0;
+let hueOffset = 0;
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+  CX = W / 2;
+  CY = H / 2;
+  R = Math.min(W, H) * 0.44;
+}
+
+window.addEventListener('resize', resize);
+resize();
+
+window.addEventListener('mousemove', e => {
+  mx = (e.clientX - CX) / CX;
+  my = (e.clientY - CY) / CY;
+});
+
+window.addEventListener('click', () => {
+  hueOffset = (hueOffset + 72) % 360;
+});
+
+function ch(base, offset) {
+  return ((base + t * 22 + hueOffset + (offset || 0)) % 360 + 360) % 360;
+}
+
+// Plasma blobs — large soft gradient orbs orbiting the center
+const blobs = Array.from({ length: 6 }, (_, i) => ({
+  phase: (i / 6) * Math.PI * 2,
+  orbitSpeed: (i % 2 === 0 ? 1 : -1) * (0.15 + i * 0.04),
+  orbitR: 0.18 + (i % 4) * 0.06,
+  size: 0.45 + (i % 3) * 0.08,
+  hue: (i / 6) * 360,
+}));
+
+// Hypotrochoid spirographs: x=(R-r)cos(t)+d·cos((R-r)/r·t), y=(R-r)sin(t)-d·sin((R-r)/r·t)
+// Revolutions chosen so each pattern closes exactly (r/gcd(R,r) rotations)
+const spirographs = [
+  { bigR: 5, smallR: 3, d: 4.8, revs: 3, speed:  0.20, fill: 0.62 },
+  { bigR: 7, smallR: 2, d: 6.3, revs: 2, speed: -0.14, fill: 0.73 },
+  { bigR: 8, smallR: 3, d: 7.0, revs: 3, speed:  0.11, fill: 0.80 },
+];
+
+// Pre-compute path points in integer coordinate space, scale at draw time
+spirographs.forEach(sp => {
+  const n = sp.revs * 100;
+  const ratio = (sp.bigR - sp.smallR) / sp.smallR;
+  sp.pts = Array.from({ length: n + 1 }, (_, i) => {
+    const theta = (i / n) * Math.PI * 2 * sp.revs;
+    return [
+      (sp.bigR - sp.smallR) * Math.cos(theta) + sp.d * Math.cos(ratio * theta),
+      (sp.bigR - sp.smallR) * Math.sin(theta) - sp.d * Math.sin(ratio * theta),
+    ];
+  });
+  sp.unitScale = sp.fill / ((sp.bigR - sp.smallR) + sp.d);
+});
+
+// Particles on orbital paths with Fibonacci-distributed phases
+const particles = Array.from({ length: 150 }, (_, i) => ({
+  angle: (i / 150) * Math.PI * 2,
+  speed: 0.18 + (i % 9) * 0.07,
+  orbitR: 0.04 + (i % 13) * 0.035,
+  size: 1 + (i % 4) * 0.75,
+  phase: (i * 1.6180339887) % (Math.PI * 2),
+  hue: (i / 150) * 360,
+}));
+
+function drawFade() {
+  ctx.fillStyle = 'rgba(0,0,0,0.12)';
+  ctx.fillRect(0, 0, W, H);
+}
+
+function drawPlasma() {
+  ctx.save();
+  ctx.globalCompositeOperation = 'screen';
+  blobs.forEach(b => {
+    const angle = b.phase + t * b.orbitSpeed + mx * 0.3;
+    const bx = CX + Math.cos(angle) * b.orbitR * R;
+    const by = CY + Math.sin(angle) * b.orbitR * R + my * R * 0.07;
+    const size = b.size * R;
+    const g = ctx.createRadialGradient(bx, by, 0, bx, by, size);
+    g.addColorStop(0,   `hsla(${ch(b.hue)},100%,62%,0.52)`);
+    g.addColorStop(0.4, `hsla(${ch(b.hue, 55)},100%,56%,0.22)`);
+    g.addColorStop(1,   `hsla(${ch(b.hue, 110)},100%,42%,0)`);
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.arc(bx, by, size, 0, Math.PI * 2);
+    ctx.fill();
+  });
+  ctx.restore();
+}
+
+function drawSpirographs() {
+  const SLICES = 12;
+  ctx.save();
+  ctx.globalCompositeOperation = 'screen';
+  spirographs.forEach((sp, si) => {
+    const s = sp.unitScale * R;
+    const baseHue = ch(si * 120);
+    const rot = t * sp.speed + mx * 0.18;
+    for (let k = 0; k < SLICES; k++) {
+      const angle = (k / SLICES) * Math.PI * 2 + rot;
+      const flip = k % 2 === 0 ? 1 : -1;
+      const kh = (baseHue + (k / SLICES) * 180) % 360;
+      ctx.save();
+      ctx.translate(CX, CY);
+      ctx.rotate(angle);
+      ctx.scale(1, flip);
+      ctx.beginPath();
+      sp.pts.forEach(([x, y], i) => {
+        i === 0 ? ctx.moveTo(x * s, y * s) : ctx.lineTo(x * s, y * s);
+      });
+      ctx.strokeStyle = `hsla(${kh},100%,72%,0.45)`;
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+      ctx.restore();
+    }
+  });
+  ctx.restore();
+}
+
+function drawRings() {
+  ctx.save();
+  for (let i = 0; i < 7; i++) {
+    const ringR = R * (0.10 + i * 0.13);
+    const h = ch(i * 51);
+    const pulse = 1 + 0.04 * Math.sin(t * 1.8 + i * 1.1);
+    const rp = ringR * pulse;
+
+    ctx.beginPath();
+    ctx.arc(CX, CY, rp, 0, Math.PI * 2);
+    ctx.strokeStyle = `hsla(${h},100%,65%,0.2)`;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    const nd = 6 + i * 4;
+    const dspeed = (i % 2 === 0 ? 1 : -1) * (0.42 + i * 0.11);
+    const ds = 1.5 + (i % 3) * 0.7;
+    for (let d = 0; d < nd; d++) {
+      const da = (d / nd) * Math.PI * 2 + t * dspeed;
+      ctx.beginPath();
+      ctx.arc(CX + Math.cos(da) * rp, CY + Math.sin(da) * rp, ds, 0, Math.PI * 2);
+      ctx.fillStyle = `hsla(${(h + (d / nd) * 200) % 360},100%,82%,0.85)`;
+      ctx.fill();
+    }
+  }
+  ctx.restore();
+}
+
+function drawLissajous() {
+  ctx.save();
+  ctx.globalCompositeOperation = 'screen';
+  const cfgs = [
+    { a: 3, b: 2, fill: 0.37, speed:  0.085 },
+    { a: 5, b: 4, fill: 0.26, speed: -0.055 },
+    { a: 7, b: 5, fill: 0.18, speed:  0.038 },
+  ];
+  cfgs.forEach((cfg, ci) => {
+    const h = ch(ci * 115, 40);
+    const delta = t * cfg.speed;
+    const rr = cfg.fill * R;
+    ctx.beginPath();
+    for (let i = 0; i <= 600; i++) {
+      const th = (i / 600) * Math.PI * 2;
+      const x = CX + rr * Math.sin(cfg.a * th + delta) * (1 + mx * 0.1);
+      const y = CY + rr * Math.sin(cfg.b * th) * (1 + my * 0.1);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.strokeStyle = `hsla(${h},100%,70%,0.38)`;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  });
+  ctx.restore();
+}
+
+function drawParticles() {
+  ctx.save();
+  ctx.globalCompositeOperation = 'screen';
+  particles.forEach(p => {
+    const angle = p.angle + t * p.speed * (1 + 0.15 * Math.sin(t * 0.3 + p.phase));
+    const rad = p.orbitR * R * (1 + 0.14 * Math.sin(t * 1.2 + p.phase));
+    const px = CX + Math.cos(angle) * rad;
+    const py = CY + Math.sin(angle) * rad;
+    const h = ch(p.hue);
+    const alpha = 0.4 + 0.55 * Math.abs(Math.sin(t * 1.5 + p.phase));
+    const size = p.size * (0.55 + 0.45 * Math.sin(t * 2 + p.phase));
+    ctx.beginPath();
+    ctx.arc(px, py, size, 0, Math.PI * 2);
+    ctx.fillStyle = `hsla(${h},100%,85%,${alpha.toFixed(2)})`;
+    ctx.fill();
+  });
+  ctx.restore();
+}
+
+function drawCenterGlow() {
+  ctx.save();
+  ctx.globalCompositeOperation = 'screen';
+  const h = ch(0);
+  const outer = (0.06 + 0.022 * Math.sin(t * 2.5)) * R * 4;
+  const g = ctx.createRadialGradient(CX, CY, 0, CX, CY, outer);
+  g.addColorStop(0,    `hsla(${h},100%,96%,0.85)`);
+  g.addColorStop(0.12, `hsla(${ch(0, 40)},100%,72%,0.3)`);
+  g.addColorStop(1,    'transparent');
+  ctx.fillStyle = g;
+  ctx.beginPath();
+  ctx.arc(CX, CY, outer, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawVignette() {
+  const g = ctx.createRadialGradient(CX, CY, R * 0.4, CX, CY, R * 1.65);
+  g.addColorStop(0, 'rgba(0,0,0,0)');
+  g.addColorStop(1, 'rgba(0,0,0,0.88)');
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, W, H);
+}
+
+function frame() {
+  t += 0.008;
+  drawFade();
+  drawPlasma();
+  drawLissajous();
+  drawSpirographs();
+  drawRings();
+  drawParticles();
+  drawCenterGlow();
+  drawVignette();
+  requestAnimationFrame(frame);
+}
+
+frame();
+</script>
+</body>
+</html>
