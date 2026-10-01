@@ -527,6 +527,7 @@ img { display: block; max-width: 100%; }
   border-radius: var(--radius) var(--radius) 0 0;
   transition: var(--transition);
 }
+.product-card--original::before { background: #E3001B; }
 .product-card--zero::before { background: #1a1a1a; }
 .product-card--cherry::before { background: #C0392B; }
 .product-card--mango::before { background: #F39C12; }
